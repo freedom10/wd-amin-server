@@ -2,8 +2,11 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"net/http"
+	"path"
 	"strconv"
+	"strings"
 	"time"
 	"wdadmin/admin/routers"
 	"wdadmin/config"
@@ -20,21 +23,44 @@ func initRouter() *gin.Engine {
 	// 设置静态路径
 	router.Static(config.Config.PublicPrefix, config.Config.UploadDirectory)
 	router.Static(config.Config.StaticPath, config.Config.StaticDirectory)
+
+	//加载静态资源
+	vueAssetsRoutePath := "web"
+	router.StaticFile("/", path.Join(vueAssetsRoutePath, "index.html"))           // 指定资源文件 url.  127.0.0.1/ 这种
+	router.StaticFS("/assets", http.Dir(path.Join(vueAssetsRoutePath, "assets"))) // 以 assets 为前缀的 url
+	router.NoRoute(func(c *gin.Context) {
+		accept := c.Request.Header.Get("Accept")
+		flag := strings.Contains(accept, "text/html")
+		if flag {
+			content, err := ioutil.ReadFile("web/index.html")
+			if (err) != nil {
+				c.Writer.WriteHeader(404)
+				c.Writer.WriteString("Not Found")
+				return
+			}
+			c.Writer.WriteHeader(200)
+			c.Writer.Header().Add("Accept", "text/html")
+			c.Writer.Write((content))
+			c.Writer.Flush()
+		}
+	})
+
 	// 设置中间件
 	router.Use(gin.Logger(), middleware.Cors(), middleware.ErrorRecover())
 	// 演示模式
 	if config.Config.DisallowModify {
 		router.Use(middleware.ShowMode())
 	}
-	// 特殊异常处理
-	router.NoMethod(response.NoMethod)
-	router.NoRoute(response.NoRoute)
+
 	// 注册路由
 	group := router.Group("/api")
 	core.RegisterGroup(group, routers.CommonGroup, middleware.TokenAuth())
 	core.RegisterGroup(group, routers.MonitorGroup, middleware.TokenAuth())
 	core.RegisterGroup(group, routers.SettingGroup, middleware.TokenAuth())
 	core.RegisterGroup(group, routers.SystemGroup, middleware.TokenAuth())
+
+	// 特殊异常处理
+	router.NoMethod(response.NoMethod)
 	return router
 }
 

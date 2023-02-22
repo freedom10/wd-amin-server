@@ -498,7 +498,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- INSERT
 -- ----------------------------
 BEGIN;
-INSERT INTO `wd_system_auth_dept` VALUES (1, 0, '默认部门', '康明', '18327647788', 10, 0, 0, 1649841995, 1660190949, 0);
+INSERT INTO `wd_system_auth_dept` VALUES (1, 0, '默认部门', '运维', '18327647788', 10, 0, 0, 1649841995, 1660190949, 0);
 INSERT INTO `wd_system_auth_admin` VALUES (1, 1, 0, 'admin', 'admin', '7fac2474740becfaf1ecbdd6cc8fb076', '/api/static/backend_avatar.png', '0', '5Xar0', 0, 1, 0, 0, '127.0.0.1', 1660641347, 1642321599, 1660287325, 0);
 INSERT INTO `wd_system_auth_role` VALUES (1, '审核员', '审核数据', 0, 0, 1668679451, 1668679468);
 COMMIT;
@@ -513,12 +513,12 @@ INSERT INTO `wd_system_config` VALUES (6, 'sms', 'default', 'aliyun', 1660620367
 INSERT INTO `wd_system_config` VALUES (7, 'sms', 'aliyun', '{\"name\":\"阿里云短信\",\"alias\":\"aliyun\",\"sign\":\"\",\"appKey\":\"\",\"secretKey\":\"\"}', 1660620367, 1660620367);
 INSERT INTO `wd_system_config` VALUES (8, 'sms', 'tencent', '{\"name\":\"腾讯云短信\",\"alias\":\"tencent\",\"sign\":\"\",\"appId\":\"\",\"secretId\":\"\",\"secretKey\":\"\"}', 1660620367, 1660620367);
 INSERT INTO `wd_system_config` VALUES (9, 'sms', 'huawei', '{\"name\":\"华为云短信\",\"alias\":\"huawei\"}', 1660620367, 1660620367);
-INSERT INTO `wd_system_config` VALUES (10, 'website', 'name', 'LikeAdmin开源后台', 1660620367, 1660620367);
+INSERT INTO `wd_system_config` VALUES (10, 'website', 'name', '乐享管理后台系统', 1660620367, 1660620367);
 INSERT INTO `wd_system_config` VALUES (11, 'website', 'logo', '/api/static/backend_logo.png', 1660620367, 1660620367);
 INSERT INTO `wd_system_config` VALUES (12, 'website', 'favicon', '/api/static/backend_favicon.ico', 1660620367, 1660620367);
 INSERT INTO `wd_system_config` VALUES (13, 'website', 'backdrop', '/api/static/backend_backdrop.png', 1660620367, 1660620367);
-INSERT INTO `wd_system_config` VALUES (14, 'website', 'copyright', '[{\"name\":\"LikeAdmin开源系统\",\"link\":\"http://www.beian.gov.cn\"}]', 1660620367, 1660620367);
-INSERT INTO `wd_system_config` VALUES (15, 'website', 'shopName', 'LikeAdmin开源系统', 1631255140, 1631255140);
+INSERT INTO `wd_system_config` VALUES (14, 'website', 'copyright', '[{\"name\":\"乐享管理后台系统\",\"link\":\"http://www.beian.gov.cn\"}]', 1660620367, 1660620367);
+INSERT INTO `wd_system_config` VALUES (15, 'website', 'shopName', '乐享管理后台系统', 1631255140, 1631255140);
 INSERT INTO `wd_system_config` VALUES (16, 'website', 'shopLogo', '/api/static/shop_logo.png', 1631255140, 1631255140);
 INSERT INTO `wd_system_config` VALUES (17, 'protocol', 'service', '{\"name\":\"服务协议\",\"content\":\"\"}', 1660620367, 1660620367);
 INSERT INTO `wd_system_config` VALUES (18, 'protocol', 'privacy', '{\"name\":\"隐私协议\",\"content\":\"\"}', 1660620367, 1660620367);
